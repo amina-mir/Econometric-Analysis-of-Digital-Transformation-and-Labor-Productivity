@@ -1,161 +1,203 @@
+ 
 <p align="center">
-  <img src="header_banner.svg" alt="Digital Transformation & Labor Productivity — UE, 2010–2023" width="100%" />
+  <img src="./header_banner.svg" alt="Digital Transformation and Labor Productivity" width="100%">
 </p>
 
-<h1 align="center">Internet, haut débit et productivité du travail dans l'Union européenne (2010–2023)</h1>
+<h1 align="center">Internet, Haut Débit & Productivité du Travail dans l'Union Européenne</h1>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Langage-R-276DC3?style=for-the-badge&logo=r&logoColor=white" alt="R" />
-  <img src="https://img.shields.io/badge/Panel-plm-1F6FEB?style=for-the-badge" alt="plm" />
-  <img src="https://img.shields.io/badge/Visualisation-ggplot2-E67E22?style=for-the-badge" alt="ggplot2" />
-  <img src="https://img.shields.io/badge/Données-World%20Bank%20WDI-2E8B57?style=for-the-badge" alt="World Bank WDI" />
-  <img src="https://img.shields.io/badge/Licence-MIT-green?style=for-the-badge" alt="MIT License" />
+  <strong>Analyse économétrique sur données de panel | 2010–2023</strong>
 </p>
 
 <p align="center">
-  <strong>Une étude économétrique en données de panel sur 15 pays de l'UE, de 2010 à 2023.</strong>
+  <img src="https://img.shields.io/badge/Language-R-blue?logo=r" alt="R">
+  <img src="https://img.shields.io/badge/Econometrics-Panel%20Data-orange" alt="Panel Data">
+  <img src="https://img.shields.io/badge/Visualization-ggplot2-orange" alt="ggplot2">
+  <img src="https://img.shields.io/badge/Data-World%20Bank%20WDI-blue" alt="World Bank">
+  <img src="https://img.shields.io/badge/License-MIT-green" alt="MIT License">
 </p>
 
 ---
 
-## 🎯 Objectif du projet
+## 1. Présentation du projet
 
-Ce projet étudie le lien entre la transformation numérique et la productivité du travail dans 15 pays de l'Union européenne sur la période **2010–2023**.
+Ce projet vise à étudier la relation entre la transformation numérique et la productivité du travail au sein de 15 pays de l'Union européenne sur la période **2010–2023**.
 
-L'objectif est d'évaluer dans quelle mesure l'accès à Internet et le développement du haut débit fixe sont associés à la productivité du travail, mesurée par le **PIB par personne employée**.
+L'objectif principal est d'analyser dans quelle mesure l'accès à Internet et le développement du haut débit fixe sont associés à l'évolution de la productivité du travail, mesurée par le PIB par personne employée.
 
-**Question de recherche :** l'amélioration de la connectivité numérique est-elle associée à une productivité du travail plus élevée dans les pays étudiés ?
+L'étude mobilise des techniques économétriques sur données de panel afin de comparer différentes spécifications et d'évaluer la robustesse des résultats obtenus.
 
-## 📊 Données et variables
+## 2. Problématique de recherche
 
-- **Source :** [World Development Indicators (WDI) — Banque mondiale](https://databank.worldbank.org/source/world-development-indicators).
-- **Périmètre :** 15 pays de l'Union européenne.
-- **Période :** 2010–2023.
+**Dans quelle mesure le développement de l'accès à Internet et du haut débit fixe contribue-t-il à l'amélioration de la productivité du travail dans les pays de l'Union européenne ?**
 
-| Variable | Mesure / description |
+Cette problématique permet d'examiner le rôle des infrastructures numériques dans la performance économique et de mieux comprendre les liens entre digitalisation et productivité.
+
+## 3. Données et variables
+
+**Source des données :** World Bank – World Development Indicators (WDI).
+
+- **Période :** 2010–2023
+- **Échantillon :** 15 pays de l'Union européenne
+- **Structure :** Données de panel pays-année
+
+### Variables principales
+
+| Variable | Description |
 |---|---|
 | Productivité du travail | PIB par personne employée |
-| Accès à Internet | Pourcentage de la population utilisant Internet |
+| Utilisation d'Internet | Pourcentage de la population utilisant Internet |
 | Haut débit fixe | Abonnements au haut débit fixe |
 
-Les données sont préparées avant estimation : vérification et nettoyage, traitement des valeurs manquantes et transformation logarithmique des variables retenues.
+Les données sont nettoyées, préparées et transformées avant l'estimation économétrique, notamment par l'utilisation de transformations logarithmiques.
 
-## 🧪 Méthodologie économétrique
+## 4. Méthodologie économétrique
 
-L'analyse repose sur trois spécifications classiques pour les données de panel :
+L'analyse repose sur une approche économétrique en données de panel.
 
-1. **MCO poolés (Pooled OLS)** — modèle de référence sans effets individuels spécifiques.
-2. **Effets fixes (Fixed Effects)** — contrôle de l'hétérogénéité individuelle invariante dans le temps.
-3. **Effets aléatoires (Random Effects)** — prise en compte des composantes individuelles aléatoires.
+### Étape 1 – Prétraitement des données
 
-### Tests de spécification et de sélection
+- Importation et exploration des données.
+- Nettoyage et traitement des valeurs manquantes.
+- Vérification de la cohérence des observations.
+- Transformation logarithmique des variables.
 
-| Test | Objectif |
+### Étape 2 – Estimation des modèles
+
+Trois modèles économétriques sont estimés et comparés :
+
+| Modèle | Description |
 |---|---|
-| Test de Chow / Fisher | Comparer le modèle poolé au modèle à effets fixes |
-| Test de Breusch–Pagan (LM) | Évaluer la pertinence des effets aléatoires par rapport au modèle poolé |
-| Test de Hausman | Comparer les estimateurs à effets fixes et à effets aléatoires |
+| Pooled OLS | Modèle à effets communs |
+| Fixed Effects | Modèle à effets fixes |
+| Random Effects | Modèle à effets aléatoires |
 
-Selon les résultats consignés dans le projet, **le modèle à effets aléatoires est retenu**.
+### Étape 3 – Tests de spécification
 
-### Diagnostics et robustesse
+Les tests suivants sont utilisés pour orienter le choix du modèle :
 
-Les diagnostics portent sur :
+- **Test de Chow :** comparaison entre le modèle poolé et le modèle à effets fixes.
+- **Test de Breusch-Pagan :** identification de la présence d'effets individuels aléatoires.
+- **Test de Hausman :** comparaison entre les modèles à effets fixes et aléatoires.
 
-- l'hétéroscédasticité ;
-- l'autocorrélation des erreurs ;
-- la multicolinéarité, examinée à l'aide du VIF ;
-- la normalité des résidus, notamment avec le test de Shapiro–Wilk.
+Le modèle à effets aléatoires est retenu à l'issue de la procédure de sélection.
 
-Des **erreurs standards robustes de type HAC (Arellano)** sont ensuite utilisées afin d'obtenir une inférence plus robuste face aux problèmes détectés.
+### Étape 4 – Tests diagnostiques
 
-## 🔎 Résultat principal
+Plusieurs diagnostics sont réalisés afin d'évaluer la validité des estimations :
 
-L'estimation initiale met en évidence un **effet positif et statistiquement significatif d'Internet au seuil de 5 %** sur la productivité du travail.
+- Hétéroscédasticité.
+- Autocorrélation des erreurs.
+- Multicolinéarité à l'aide du VIF.
+- Normalité des résidus à l'aide du test de Shapiro-Wilk.
 
-Cependant, après l'application de la correction robuste HAC (Arellano), cet effet **perd sa significativité statistique**.
+### Étape 5 – Correction de la variance des erreurs
 
-### Interprétation
+Des erreurs standards robustes de type **HAC (Arellano)** sont utilisées afin de tenir compte des problèmes d'hétéroscédasticité et d'autocorrélation.
 
-Ce résultat invite à la prudence : la relation positive observée dans le modèle initial n'est pas suffisamment robuste pour conclure à un effet statistiquement significatif après correction. Il illustre l'importance des diagnostics et des erreurs standards robustes dans l'analyse économétrique des données de panel.
+Cette étape permet d'évaluer la robustesse de la significativité statistique des coefficients estimés.
 
-> **À retenir :** le signe estimé est positif, mais la significativité statistique de l'effet d'Internet ne résiste pas à la correction HAC.
+## 5. Principaux résultats
 
-## 🗂️ Structure du dépôt
+L'analyse met en évidence un résultat économétrique important :
+
+- L'effet estimé de l'utilisation d'Internet sur la productivité du travail est positif et statistiquement significatif au seuil de 5 % avant correction.
+- Après l'application des erreurs standards robustes HAC (Arellano), cet effet perd sa significativité statistique.
+- Ce résultat souligne l'importance des diagnostics économétriques et des corrections robustes dans l'interprétation des modèles de panel.
+
+**Conclusion :**
+
+Les résultats suggèrent une association positive entre l'utilisation d'Internet et la productivité du travail dans les estimations initiales. Toutefois, cette relation n'est pas statistiquement robuste après correction HAC.
+
+Il est donc nécessaire de rester prudent dans l'interprétation de l'effet économique du développement numérique.
+
+## 6. Structure du dépôt
 
 ```text
-.
+Econometric-Analysis-of-Digital-Transformation-and-Labor-Productivity/
+│
 ├── header_banner.svg
 ├── panel_econometrie.R
 ├── panel_digital_productivity.csv
 ├── Digital_Transformation_Labor_Productivity_Report.pdf
-├── LICENSE
-└── README.md
+├── README.md
+└── LICENSE
 ```
 
 | Fichier | Description |
 |---|---|
-| `panel_econometrie.R` | Script R : préparation des données, estimations, tests et diagnostics. |
-| `panel_digital_productivity.csv` | Jeu de données de panel issu des WDI de la Banque mondiale. |
-| `Digital_Transformation_Labor_Productivity_Report.pdf` | Rapport détaillé présentant les résultats et leur interprétation. |
-| `header_banner.svg` | Bannière du dépôt GitHub. |
-| `LICENSE` | Texte de la licence MIT. |
+| `panel_econometrie.R` | Script R contenant les estimations, tests et diagnostics |
+| `panel_digital_productivity.csv` | Jeu de données de panel issu du WDI |
+| `Digital_Transformation_Labor_Productivity_Report.pdf` | Rapport détaillé de l'étude |
+| `header_banner.svg` | Bannière graphique du projet |
+| `README.md` | Documentation du projet |
+| `LICENSE` | Licence MIT |
 
-## ⚙️ Installation et exécution
+## 7. Technologies et outils
 
-### Prérequis
+| Technologie | Utilisation |
+|---|---|
+| R | Analyse statistique et économétrique |
+| plm | Modélisation des données de panel |
+| lmtest | Tests économétriques |
+| sandwich | Erreurs standards robustes |
+| car | Diagnostics et multicolinéarité (VIF) |
+| stargazer | Présentation des résultats |
+| ggplot2 | Visualisation des données |
 
-- **R 4.3.1** ou version ultérieure.
-- Les packages R utilisés dans l'analyse : `plm`, `lmtest`, `sandwich`, `car`, `stargazer` et `ggplot2`.
+## 8. Reproduire l'analyse
 
-### Installer les packages
+Pour reproduire les analyses :
 
-```r
-packages <- c("plm", "lmtest", "sandwich", "car", "stargazer", "ggplot2")
+**1.** Cloner le dépôt :
 
-missing_packages <- packages[!packages %in% rownames(installed.packages())]
-if (length(missing_packages) > 0) {
-  install.packages(missing_packages)
-}
+```bash
+git clone https://github.com/amina-mir/Econometric-Analysis-of-Digital-Transformation-and-Labor-Productivity.git
 ```
 
-### Lancer l'analyse
+**2.** Ouvrir le projet dans RStudio.
 
-Après avoir placé le script et le fichier CSV dans le même dossier de travail, exécuter :
+**3.** Installer les principaux packages :
+
+```r
+install.packages(c(
+  "plm",
+  "ggplot2",
+  "lmtest",
+  "sandwich",
+  "car",
+  "stargazer"
+))
+```
+
+**4.** Ouvrir et exécuter le script :
 
 ```r
 source("panel_econometrie.R")
 ```
 
-Le script contient les étapes de l'analyse économétrique. Pour les détails des résultats et de leur interprétation, consulter le rapport PDF inclus dans le dépôt.
+## 9. Auteur
 
-## 🧰 Outils et technologies
+<p align="center">
+  <strong>AMINA MIR</strong>
+  <br>
+  Master d'Excellence en Économie Appliquée et Data Science
+  <br>
+  FSJES – Université Moulay Ismail
+  <br>
+  Meknès, Maroc
+</p>
 
-- **R** — traitement et analyse statistique ;
-- **plm** — estimation des modèles de données de panel ;
-- **lmtest** et **sandwich** — tests et inférence robuste ;
-- **car** — diagnostics de multicolinéarité ;
-- **stargazer** — présentation des résultats économétriques ;
-- **ggplot2** — visualisation des données et des résultats.
-
-## 👩‍💻 À propos de l'auteure
-
-**Amina Mir**  
-Master d'Excellence en Économie Appliquée et Data Science  
-FSJES — Université Moulay Ismaïl, Meknès, Maroc
-
-Ce travail s'inscrit dans une démarche de recherche appliquée mobilisant l'économétrie, la science des données et l'exploitation de données économiques publiques.
-
-## 📚 Référence des données
-
-Banque mondiale, *World Development Indicators (WDI)* : [https://databank.worldbank.org/source/world-development-indicators](https://databank.worldbank.org/source/world-development-indicators).
-
-## 📄 Licence
-
-Ce projet est distribué sous licence **MIT**. Consultez le fichier [`LICENSE`](LICENSE) pour les conditions applicables.
+<p align="center">
+  <em>Applied Economics | Econometrics | Data Science | Data Analytics</em>
+</p>
 
 ---
 
 <p align="center">
-  <sub>Réalisé avec R · Économétrie appliquée · Données de panel · 2010–2023</sub>
+  ⭐ If you find this project interesting, feel free to star the repository!
+</p>
+
+<p align="center">
+  © 2026 Amina Mir — Licensed under the MIT License.
 </p>
