@@ -1,6 +1,6 @@
 # Econometric Analysis of Digital Transformation and Labor Productivity (EU 2010–2023)
 
-![Header Banner](https://raw.githubusercontent.com/amina-mir/Econometric-Analysis-of-Digital-Transformation-and-Labor-Productivity/main/header_banner.svg)
+![Header Banner](https://raw.githubusercontent.com/amina-mir/Econometric-Analysis-of-Digital-Transformation-and-Labor-Productivity/main/headerbanner.svg)
 
 ## 🌐 Internet, Haut Débit & Productivité du Travail dans l'UE (2010–2023)
 
